@@ -59,7 +59,7 @@ public class VoiceModule extends ReactContextBaseJavaModule implements Recogniti
       speech.destroy();
       speech = null;
     }
-
+    
     if(opts.hasKey("RECOGNIZER_ENGINE")) {
       switch (opts.getString("RECOGNIZER_ENGINE")) {
         case "GOOGLE": {
@@ -322,8 +322,10 @@ public class VoiceModule extends ReactContextBaseJavaModule implements Recogniti
     WritableArray arr = Arguments.createArray();
 
     ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-    for (String result : matches) {
-      arr.pushString(result);
+    if (matches != null) {
+      for (String result : matches) {
+        arr.pushString(result);
+      }
     }
 
     WritableMap event = Arguments.createMap();
@@ -345,13 +347,11 @@ public class VoiceModule extends ReactContextBaseJavaModule implements Recogniti
     WritableArray arr = Arguments.createArray();
 
     ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-    if (matches != null)
-    {
+    if (matches != null) {
       for (String result : matches) {
         arr.pushString(result);
       }
     }
-
     WritableMap event = Arguments.createMap();
     event.putArray("value", arr);
     sendEvent("onSpeechResults", event);
