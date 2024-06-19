@@ -120,8 +120,11 @@ class RCTVoice {
             {
               EXTRA_LANGUAGE_MODEL: 'LANGUAGE_MODEL_FREE_FORM',
               EXTRA_MAX_RESULTS: 5,
-              EXTRA_PARTIAL_RESULTS: true,
+              EXTRA_PARTIAL_RESULTS: false,
               REQUEST_PERMISSIONS_AUTO: true,
+              EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS: 55000, // minimum how long it should listen
+              EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS: 2000,
+              EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS: 2000
             },
             options,
           ),
